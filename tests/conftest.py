@@ -7,11 +7,19 @@ import pytest
 from homeassistant.core import HomeAssistant
 from modbus_connection.mock import MockModbusConnection
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+from pytest_homeassistant_custom_component.syrupy import HomeAssistantSnapshotExtension
+from syrupy.assertion import SnapshotAssertion
 
 from custom_components.pzem_014_016.const import DEFAULT_NAME, DOMAIN
 from custom_components.pzem_014_016.helpers import create_unique_id
 
 from . import MOCK_ENTRY_DATA, seed_meter
+
+
+@pytest.fixture
+def snapshot(snapshot: SnapshotAssertion) -> SnapshotAssertion:
+    """Snapshot with Home Assistant's extension, whatever order plugins load in."""
+    return snapshot.use_extension(HomeAssistantSnapshotExtension)
 
 
 @pytest.fixture(autouse=True)
