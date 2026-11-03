@@ -1,0 +1,19 @@
+{
+  "domain": "pzem_014_016",
+  "name": "PZEM-014/016",
+  "codeowners": ["@sambartle"],
+  "config_flow": true,
+  "dependencies": ["modbus", "usb"],
+  "documentation": "https://github.com/sambartle/hacs-pzem-014-016",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/sambartle/hacs-pzem-014-016/issues",
+  "loggers": [
+    "custom_components.pzem_014_016",
+    "custom_components.pzem_014_016.pzem_014_016_modbus",
+    "modbus_connection",
+    "tmodbus"
+  ],
+  "requirements": [],
+  "version": "0.1.0"
+}

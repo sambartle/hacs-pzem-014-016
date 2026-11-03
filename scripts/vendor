@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Copy the pzem-014-016-modbus device library into the integration.
+#
+#   scripts/vendor                      # from the sibling ../pzem-014-016-modbus checkout
+#   scripts/vendor /path/to/pzem-014-016-modbus # from another checkout
+#   scripts/vendor --pypi 0.1.0         # from a release on PyPI
+#   scripts/vendor --check              # fail if the vendored copy has drifted
+#
+# The library is imported relatively (`from .pzem_014_016_modbus import ...`), so it
+# needs no pip requirement and works the moment HACS has copied the folder.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+TARGET="custom_components/pzem_014_016/pzem_014_016_modbus"
+CHECK=0
+SOURCE="../pzem-014-016-modbus"
+TMP=""
+VERSION=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --check) CHECK=1; shift ;;
+        --pypi)
+            TMP="$(mktemp -d)"
+            python3 -m pip download --no-deps --no-binary :all: "pzem-014-016-modbus==$2" -d "${TMP}" >/dev/null
+            tar -xzf "${TMP}"/pzem_014_016_modbus-*.tar.gz -C "${TMP}"
+            SOURCE="$(echo "${TMP}"/pzem_014_016_modbus-*)"
+            VERSION="$2"
+            shift 2 ;;
+        *) SOURCE="$1"; shift ;;
+    esac
+done
+trap '[[ -n "${TMP}" ]] && rm -rf "${TMP}"' EXIT
+
+LIBRARY="${SOURCE}/src/pzem_014_016_modbus"
+if [[ ! -d "${LIBRARY}" ]]; then
+    echo "No library at ${LIBRARY}" >&2
+    exit 1
+fi
+
+if [[ "${CHECK}" == 1 ]]; then
+    diff -r -x __pycache__ "${LIBRARY}" "${TARGET}"
+    echo "The vendored library matches ${SOURCE}."
+    exit 0
+fi
+
+rm -rf "${TARGET}"
+mkdir -p "${TARGET}"
+cp -r "${LIBRARY}/." "${TARGET}/"
+find "${TARGET}" -name __pycache__ -prune -exec rm -rf {} +
+if [[ -n "${VERSION}" ]]; then
+    echo "PZEM_MODBUS_VERSION=${VERSION}" > scripts/vendor.version
+fi
+echo "Vendored ${SOURCE} into ${TARGET}."

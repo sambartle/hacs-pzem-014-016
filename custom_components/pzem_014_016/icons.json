@@ -1,0 +1,9 @@
+{
+  "entity": {
+    "number": {
+      "modbus_address": {
+        "default": "mdi:identifier"
+      }
+    }
+  }
+}

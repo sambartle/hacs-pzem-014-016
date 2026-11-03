@@ -1,0 +1,48 @@
+# The contents of this file is based on https://github.com/home-assistant/core/blob/dev/pyproject.toml
+
+target-version = "py314"
+
+# The vendored device library is linted in its own repository.
+extend-exclude = ["custom_components/pzem_014_016/pzem_014_016_modbus"]
+
+[lint]
+select = [
+    "ALL",
+]
+
+ignore = [
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+    "D203", # no-blank-line-before-class (incompatible with formatter)
+    "D212", # multi-line-summary-first-line (incompatible with formatter)
+    "COM812", # incompatible with formatter
+    "ISC001", # incompatible with formatter
+    "CPY001", # missing-copyright-notice
+    "D401", # non-imperative-mood
+    "TC001", # Home Assistant's own style keeps these imports at runtime
+    "TC002",
+    "TC003",
+    "ARG001", # Home Assistant fixes the signatures of its entry points
+    "ARG002",
+    "TRY003",
+    "EM101",
+]
+
+[lint.per-file-ignores]
+"tests/**" = [
+    "S101", # a test asserts
+    "ARG005",
+    "SLF001", # a test may reach into the mock backend
+    "PLR0913",
+    "PLR0917",
+    "PLR2004",
+    "D103",
+]
+
+[lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[lint.pyupgrade]
+keep-runtime-typing = true
+
+[lint.mccabe]
+max-complexity = 25

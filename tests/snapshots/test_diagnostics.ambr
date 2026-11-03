@@ -1,0 +1,31 @@
+# serializer version: 1
+# name: test_diagnostics
+  dict({
+    'connected': True,
+    'entry': dict({
+      'host': '**REDACTED**',
+      'port': 502,
+      'type': 'tcp',
+      'unit_id': 1,
+    }),
+    'raw': dict({
+      'holding': dict({
+        '1': 2300,
+        '2': 1,
+      }),
+      'input': dict({
+        '0': 2301,
+        '1': 12345,
+        '2': 0,
+        '3': 12345,
+        '4': 0,
+        '5': 4464,
+        '6': 1,
+        '7': 500,
+        '8': 98,
+        '9': 0,
+      }),
+    }),
+    'read_error': None,
+  })
+# ---

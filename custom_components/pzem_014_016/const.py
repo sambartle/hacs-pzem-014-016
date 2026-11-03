@@ -1,0 +1,18 @@
+"""Constants for the PZEM integration."""
+
+DOMAIN = "pzem_014_016"
+MANUFACTURER = "Peacefair"
+MODEL = "PZEM-014/016"
+
+DEFAULT_NAME = "PZEM"
+DEFAULT_BAUDRATE = 9600
+DEFAULT_PORT = 502
+DEFAULT_UNIT_ID = 1
+SCAN_INTERVAL = 5
+SETTINGS_SCAN_INTERVAL = 60
+
+CONF_BAUDRATE = "baudrate"
+CONF_UNIT_ID = "unit_id"
+
+TYPE_SERIAL = "serial"
+TYPE_TCP = "tcp"

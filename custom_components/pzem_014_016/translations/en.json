@@ -1,0 +1,108 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect: {error}",
+      "meter_silent": "The adapter is reachable, but the meter behind it did not answer. Check the unit ID, the wiring and the adapter's serial settings."
+    },
+    "step": {
+      "reconfigure": {
+        "description": "Update where this meter is reached, for example after it moved to another address or its RS485 bus was rewired.",
+        "menu_options": {
+          "reconfigure_serial": "Serial port (Modbus RTU)",
+          "reconfigure_tcp": "Network (Modbus TCP)"
+        }
+      },
+      "reconfigure_serial": {
+        "data": {
+          "baudrate": "Baud rate",
+          "device": "Serial port",
+          "unit_id": "Modbus unit ID"
+        },
+        "data_description": {
+          "baudrate": "The speed of the RS485 bus, as set on the meter. The PZEM default is 9600.",
+          "device": "The serial port the meter's RS485 adapter is connected to.",
+          "unit_id": "The meter's Modbus unit ID, also called its Modbus device address. The PZEM default is 1."
+        },
+        "description": "Reach this meter over a serial port wired to its RS485 terminals."
+      },
+      "reconfigure_tcp": {
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "unit_id": "Modbus unit ID"
+        },
+        "data_description": {
+          "host": "The hostname or IP address of the Modbus TCP gateway the meter is behind.",
+          "port": "The TCP port of the gateway. The Modbus default is 502.",
+          "unit_id": "The meter's Modbus unit ID, also called its Modbus device address. The PZEM default is 1."
+        },
+        "description": "Reach this meter over the network through a Modbus TCP gateway."
+      },
+      "serial": {
+        "data": {
+          "baudrate": "Baud rate",
+          "device": "Serial port",
+          "unit_id": "Modbus unit ID"
+        },
+        "data_description": {
+          "baudrate": "The speed of the RS485 bus, as set on the meter. The PZEM default is 9600.",
+          "device": "The serial port the meter's RS485 adapter is connected to.",
+          "unit_id": "The meter's Modbus unit ID, also called its Modbus device address. The PZEM default is 1."
+        },
+        "description": "Set up a meter wired to a serial port over RS485."
+      },
+      "tcp": {
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "unit_id": "Modbus unit ID"
+        },
+        "data_description": {
+          "host": "The hostname or IP address of the Modbus TCP gateway the meter is behind.",
+          "port": "The TCP port of the gateway. The Modbus default is 502.",
+          "unit_id": "The meter's Modbus unit ID, also called its Modbus device address. The PZEM default is 1."
+        },
+        "description": "Set up a meter reached over the network through a Modbus TCP gateway."
+      },
+      "user": {
+        "description": "A PZEM meter can be set up in two ways.\n\nYou can reach it over a serial port its RS485 terminals are wired to, which covers ports shared over the network by a serial proxy, or over the network through a gateway that speaks Modbus TCP.",
+        "menu_options": {
+          "serial": "Serial port (Modbus RTU)",
+          "tcp": "Network (Modbus TCP)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "power_alarm": {
+        "name": "Power alarm"
+      }
+    },
+    "number": {
+      "modbus_address": {
+        "name": "Modbus address"
+      },
+      "power_alarm_threshold": {
+        "name": "Power alarm threshold"
+      }
+    }
+  },
+  "exceptions": {
+    "address_in_use": {
+      "message": "Another PZEM meter on this link is already set up at Modbus address {address}."
+    },
+    "modbus_error": {
+      "message": "Error communicating with the meter."
+    },
+    "no_component_answered": {
+      "message": "The meter did not answer."
+    },
+    "write_failed": {
+      "message": "Failed to write to the meter."
+    }
+  }
+}
