@@ -126,8 +126,8 @@ Open the repository in the dev container (or run `scripts/setup`), then:
 The Ruff configuration leaves the vendored library out: it is linted and type
 checked in its own repository.
 
-The brand images are not included yet, which is why the HACS validation ignores
-`brands`.
+The icon is in `custom_components/pzem_014_016/brand/` (`icon.png`, 256×256, and
+`icon@2x.png`, 512×512).
 
 ## Dependency updates
 
