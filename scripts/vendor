@@ -26,7 +26,7 @@ while [[ $# -gt 0 ]]; do
             TMP="$(mktemp -d)"
             python3 -m pip download --no-deps --no-binary :all: "pzem-014-016-modbus==$2" -d "${TMP}" >/dev/null
             tar -xzf "${TMP}"/pzem_014_016_modbus-*.tar.gz -C "${TMP}"
-            SOURCE="$(echo "${TMP}"/pzem_014_016_modbus-*)"
+            SOURCE="$(find "${TMP}" -mindepth 1 -maxdepth 1 -type d -name 'pzem_014_016_modbus-*')"
             VERSION="$2"
             shift 2 ;;
         *) SOURCE="$1"; shift ;;
