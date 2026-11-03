@@ -51,9 +51,21 @@ the counter with the manufacturer's software.
 
 ### HACS
 
-1. In HACS, open the menu and choose **Custom repositories**.
-2. Add `https://github.com/sambartle/hacs-pzem-014-016` as an **Integration**.
-3. Install **PZEM-014/016** and restart Home Assistant.
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=sambartle&repository=hacs-pzem-014-016&category=integration)
+
+The button above opens this repository in HACS on your Home Assistant. Or add it
+by hand:
+
+1. Make sure [HACS](https://hacs.xyz/docs/use/) is installed.
+2. In HACS, open the three-dot menu and choose **Custom repositories**.
+3. Enter `https://github.com/sambartle/hacs-pzem-014-016`, choose the category
+   **Integration**, and click **Add**.
+4. Find **PZEM-014/016** in HACS, click **Download**, and pick the latest version.
+5. Restart Home Assistant.
+6. Go to **Settings → Devices & services → Add integration**, search for
+   **PZEM-014/016** and follow [Configuration](#configuration).
+
+HACS offers new releases as updates, so you can update from there too.
 
 ### Manually
 
